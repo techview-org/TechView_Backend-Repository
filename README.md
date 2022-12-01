@@ -20,15 +20,21 @@
 
 ## Usage
 
-> <font color="red">Some usage instructions for getting the app up and running locally</font>
+> Some usage instructions for getting the app up and running locally
 
 ## Requirements
 
 - Node 0.10.x
 - Redis 2.6.x
 - Postgresql 9.1.x
-- etc
-- etc
+- PG 8.5.1.X
+- PG Promise 10.10.1.x
+- dotenv 8.2.0.x
+- knex 0.95.4.x
+- React 17.0.2.x
+- React-DOM 17.0.2.x
+- React-router 5.2.0x
+- React-XML-Parser 1.1.8.x 
 
 ## Development
 
@@ -37,15 +43,12 @@
 From within the root directory:
 
 ```sh
-npm init
-npm install cors express knex nodemon pg
-npx knex migrate:latest
-npx knex seed:run
+npm install
 ```
 
 ### Roadmap
 
-View the project roadmap [here](https://github.com/orgs/techview-org/projects).
+View the project roadmap [here](https://github.com/orgs/techview-org/projects/1/views/1).
 
 
 ## Contributing
