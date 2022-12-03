@@ -2,6 +2,7 @@ const pool = require('../db.js');
 
 class Users {
     static grabUsersFromDB() {
+        console.log("hell")
         return pool.query('SELECT * FROM users')
     }
 
