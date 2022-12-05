@@ -3,8 +3,8 @@ const Comments = require('../model/commentsModel.js')
 
 const getAllCommentsForPost = async (request, response) => {
     postInfo = request.body
-    let data = await Comments.grabCommentsFromDB(postInfo)
-    return response.send(post.rows)
+    let data = await Comments.grabCommentsFromDB()
+    return response.send(data.rows)
 }
 
 const createComment = async (request, response) => {
