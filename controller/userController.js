@@ -22,7 +22,7 @@ const loginAuthentication = async (request, response) => {
 const addUserInfo = async (request, response) => {
     let userInfo = request.body
     console.log(userInfo)
-    const post = await Users.createAccountToDB(userInfo.email, userInfo.username, userInfo.password, userInfo.badged_id)
+    const post = await Users.createAccountToDB( userInfo.username, userInfo.email, userInfo.password, userInfo.badged_id)
     return response.send(post.rows)
 }
 
