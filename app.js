@@ -1,23 +1,20 @@
-//Requires
 const express = require('express');
-const cors = require('cors')
-const userRouter = require('./routes/userRoutes')
-
-//Server 
 const app = express();
-const PORT = process.env.PORT || 4000; // Or whichever port you choose for your local server
+const cors = require('cors');
+const port = 4005;
+const userRouter = require('./routes/userRoutes');
+const postRouter = require('./routes/postRoutes')
+const commentsRouter = require('./routes/commentsRoutes')
 
-//Middle Ware
-app.use(cors())
-app.use(express.json())
+app.use(express.json());
+app.use(cors());
+
+// app.use(commentsRouter)
+// app.use(postRouter)
 app.use(userRouter)
 
-//Server Routes
-// app.use('/projects', projectsRouter)
-// app.use('/bugs', bugsRouter)
-// app.use('/users', usersRouter)
 
-//Listening
-app.listen(PORT, () => {
-    console.log(`Listening on port: ${PORT}`)
+
+app.listen(port, () => {
+    console.log(`listening at port: ${port}`)
 })

@@ -2,7 +2,7 @@ const pool = require('../db.js');
 
 class Comments {
     static grabCommentsFromDB(post_id) {
-        return pool.query('SELECT * FROM comments JOIN post on comments.post_id = $1', [post_id])
+        return pool.query('SELECT * FROM comments')
     }
 
     static createCommentToDB(user_id, post_id, likes, comment){
