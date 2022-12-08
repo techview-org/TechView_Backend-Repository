@@ -5,10 +5,6 @@ class Users {
     return pool.query('SELECT * FROM users')
   }
 
-  static grabUserByIdFromDB (userId) {
-    return pool.query('SELECT username FROM users WHERE id = $1', [userId])
-  }
-
   static grabUsersDataByEmailFromDB (userEmail) {
     console.log(userEmail)
     return pool.query('SELECT * FROM users WHERE email = $1', [userEmail])

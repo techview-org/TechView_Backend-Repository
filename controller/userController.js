@@ -5,14 +5,6 @@ const getAllUsers = async (request, response) => {
     response.send(data.rows)
 }
 
-const getUserById = async (request, response) => {
-    let userId = request.params.id
-    
-    const userData = await Users.grabUserByIdFromDB(userId)
-    const username = userData.rows[0].username
-    response.send(username)
-}
-
 const loginAuthentication = async (request, response) => {
     let data = await Users.grabUsersDataByEmailFromDB(request.params.email)
     if (data.rows[0]) {
