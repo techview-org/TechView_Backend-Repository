@@ -28,7 +28,6 @@ const addUserInfo = async (request, response) => {
 
 module.exports = {
     getAllUsers,
-    getUserById,
     loginAuthentication,
     addUserInfo
 }

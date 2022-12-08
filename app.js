@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 // app.use(commentsRouter)
-// app.use(postRouter)
+app.use(postRouter)
 app.use(userRouter)
 
 
