@@ -9,7 +9,6 @@ exports.up = function(knex) {
         table.integer("comment_id")
         table.string("post_description");
         table.timestamp("post-times").defaultTo(knex.fn.now())
-        
      })
 };
 

@@ -7,8 +7,12 @@ const getPost = async (request, response) => {
 }
 
 const addPost = async (request, response) => {
-    let postInfo = requset.body
-    const post = await Post.addPostToDB(postInfo.user_id, postInfo.comment_id, postInfo.post_title, postInfo.post_description, postInfo.post_times)
+    let postInfo = request.body
+    const latestPostId = await Post.grabLatestPostIdFromDB()
+    const newPostId = await latestPostId.rows[0].max + 1
+    const post = await Post.addPostToDB(newPostId, postInfo.user_id, postInfo.comment_id, postInfo.post_description)
+
+    response.send(post)
 }
 
 module.exports = {
