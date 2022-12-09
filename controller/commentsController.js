@@ -1,9 +1,8 @@
-const { response } = require('express')
 const Comments = require('../model/commentsModel.js')
 
 const getAllCommentsForPost = async (request, response) => {
-  postInfo = request.body
-  const data = await Comments.grabCommentsFromDB()
+  const postId = request.params.postId
+  const data = await Comments.grabCommentsFromDB(postId)
   return response.send(data.rows)
 }
 

@@ -9,7 +9,7 @@ const commentsRouter = require('./routes/commentsRoutes')
 app.use(express.json())
 app.use(cors())
 
-// app.use(commentsRouter)
+app.use(commentsRouter)
 app.use(postRouter)
 app.use(userRouter)
 

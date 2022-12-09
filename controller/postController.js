@@ -10,7 +10,7 @@ const addPost = async (request, response) => {
   const postInfo = request.body
   const latestPostId = await Post.grabLatestPostIdFromDB()
   const newPostId = await latestPostId.rows[0].max + 1
-  const post = await Post.addPostToDB(newPostId, postInfo.user_id, postInfo.post_description)
+  const post = await Post.addPostToDB(newPostId, postInfo.user_id, postInfo.post_title, postInfo.post_description, postInfo.post_type)
 
   response.send(post)
 }
