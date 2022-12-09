@@ -1,4 +1,5 @@
 const Users = require('../model/userModel.js')
+const bcrypt = require('bcrypt')
 
 const getAllUsers = async (request, response) => {
   const data = await Users.grabUsersFromDB()
@@ -6,24 +7,33 @@ const getAllUsers = async (request, response) => {
 }
 
 const loginAuthentication = async (request, response) => {
-  const data = await Users.grabUsersDataByEmailFromDB(request.params.email)
-  if (data.rows[0]) {
-    const password = await Users.grabPasswordByEmailFromDB(request.params.email)
-    if (password.rows[0].password === request.params.password) {
-      response.send({ alert: 'loged in', data: data.rows[0] })
+
+    let data = await Users.grabUsersDataByEmailFromDB(request.params.email)
+    if (data.rows[0]) {
+        let password = await Users.grabPasswordByEmailFromDB(request.params.email);
+       
+        // bcrypt.compare is a promise. You must await. 
+        const passCheck = await bcrypt.compare(request.params.password, password.rows[0].password);
+        
+        if (passCheck) {
+            response.send({ alert: "loged in", data: data.rows[0] })
+        } else {
+            response.send({ alert: 'invalid log in' })
+        }
     } else {
       response.send({ alert: 'invalid log in' })
     }
-  } else {
-    response.send({ alert: 'invalid log in' })
-  }
 }
 
 const addUserInfo = async (request, response) => {
-  const userInfo = request.body
-  console.log(userInfo)
-  const post = await Users.createAccountToDB(userInfo.username, userInfo.email, userInfo.password, userInfo.badged_id)
-  return response.send(post.rows)
+    let userInfo = request.body
+    console.log(userInfo)
+    const saltRounds = 10;
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hashedPassword = await bcrypt.hash(userInfo.password, salt);
+    console.log(hashedPassword);
+    const post = await Users.createAccountToDB( userInfo.username, userInfo.email, hashedPassword, userInfo.badged_id)
+    return response.send(post.rows)
 }
 
 module.exports = {
