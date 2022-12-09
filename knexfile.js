@@ -9,7 +9,7 @@ module.exports = {
     client: 'pg',
     connection: {
       database: 'techView',
-      user:     'emmanuel',
+      user: 'emmanuel',
       password: '2413'
     }
   },
@@ -18,7 +18,7 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'my_db',
-      user:     'username',
+      user: 'username',
       password: 'password'
     },
     pool: {
@@ -30,4 +30,4 @@ module.exports = {
     }
   }
 
-};
+}
