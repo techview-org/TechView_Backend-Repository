@@ -2,7 +2,11 @@ const pool = require('../db.js')
 
 class Post {
   static grabPostFromDB() {
-    return pool.query('SELECT users.username, post.*FROM users, post WHERE post.user_id = users.id')
+    return pool.query('SELECT users.username, post.* FROM users, post WHERE post.user_id = users.id')
+  }
+
+  static grabFilteredPostsFromDB(filter) {
+    return pool.query('SELECT users.username, post.* FROM users, post WHERE post.post_type = $1 AND users.id = post.user_id', [filter])
   }
 
   static grabLatestPostIdFromDB() {

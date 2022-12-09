@@ -15,7 +15,17 @@ const addPost = async (request, response) => {
   response.send(post)
 }
 
+const getFilteredPosts = async (request, response) => {
+  const filterValue = request.params.filter
+  console.log(filterValue)
+  const data = await Post.grabFilteredPostsFromDB(filterValue)
+  const filteredPosts = await data.rows
+
+  response.send(filteredPosts)
+}
+
 module.exports = {
   getPost,
+  getFilteredPosts,
   addPost
 }
