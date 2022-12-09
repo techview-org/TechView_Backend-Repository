@@ -2,11 +2,12 @@ const Users = require('../model/userModel.js')
 const bcrypt = require('bcrypt')
 
 const getAllUsers = async (request, response) => {
-    let data = await Users.grabUsersFromDB()
-    response.send(data.rows)
+  const data = await Users.grabUsersFromDB()
+  response.send(data.rows)
 }
 
 const loginAuthentication = async (request, response) => {
+
     let data = await Users.grabUsersDataByEmailFromDB(request.params.email)
     if (data.rows[0]) {
         let password = await Users.grabPasswordByEmailFromDB(request.params.email);
@@ -20,7 +21,7 @@ const loginAuthentication = async (request, response) => {
             response.send({ alert: 'invalid log in' })
         }
     } else {
-        response.send({ alert: "invalid log in" })
+      response.send({ alert: 'invalid log in' })
     }
 }
 
@@ -36,7 +37,7 @@ const addUserInfo = async (request, response) => {
 }
 
 module.exports = {
-    getAllUsers,
-    loginAuthentication,
-    addUserInfo
+  getAllUsers,
+  loginAuthentication,
+  addUserInfo
 }
