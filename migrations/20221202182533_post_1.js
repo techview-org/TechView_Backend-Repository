@@ -9,6 +9,7 @@ exports.up = function (knex) {
     table.string('post_title')
     table.string('post_description')
     table.string('post_type')
+    table.integer('likes')
     table.timestamp('post-times').defaultTo(knex.fn.now())
   })
 }

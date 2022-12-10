@@ -7,6 +7,7 @@ exports.up = function (knex) {
     table.increments('comment_id').primary()
     table.integer('user_id').references('id').inTable('users')
     table.integer('post_id').references('post_id').inTable('post')
+    table.integer('likes')
     table.string('comment_description')
   })
 }
