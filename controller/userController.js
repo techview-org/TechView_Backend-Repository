@@ -36,8 +36,16 @@ const addUserInfo = async (request, response) => {
     return response.send(post.rows)
 }
 
+const getUsernameAndEmail = async (request, response) => {
+  const username = request.params.username
+  const data = await Users.grabUsernameAndEmailFromDB(username)
+  const userInfo = data.rows[0]
+  response.send(userInfo)
+}
+
 module.exports = {
   getAllUsers,
   loginAuthentication,
-  addUserInfo
+  addUserInfo,
+  getUsernameAndEmail
 }
