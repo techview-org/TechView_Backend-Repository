@@ -1,5 +1,4 @@
 const Post = require('../model/postModel.js')
-const Users = require('../model/userModel')
 
 const getPost = async (request, response) => {
   const data = await Post.grabPostFromDB()
