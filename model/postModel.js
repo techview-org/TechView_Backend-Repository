@@ -21,7 +21,7 @@ class Post {
     return pool.query('SELECT users.username, post.* FROM users, post WHERE users.id = post.user_id AND users.username = $1 AND post.post_title = $2;', [username, postTitle])
   }
 
-  static addToLikesForGivenPostInDB(postId) {
+  static addToLikesForGivenPostInDB (postId) {
     return pool.query('UPDATE post SET likes = likes + 1 WHERE post_id = $1 RETURNING *', [postId])
   }
 
