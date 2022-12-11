@@ -8,7 +8,7 @@ postRouter.get('/post/:filter', postController.getFilteredPosts)
 
 postRouter.post('/addPost', postController.addPost)
 
-// path requires username post title and a property called isLiked set equal to true or false depending on if the user has already liked the post
+// path requires username postTitle and a property called isLiked set equal to true or false depending on if the user has already liked the post
 postRouter.patch('/updateLikes', postController.updateLikes)
 
 module.exports = postRouter
