@@ -10,6 +10,10 @@ class Users {
     return pool.query('SELECT * FROM users WHERE email = $1', [userEmail])
   }
 
+  static grabUserIdGivenUsernamFromDB (username) {
+    return pool.query('SELECT id FROM users WHERE username = $1', [username])
+  }
+
   static grabUsernameAndEmailFromDB (username) {
     return pool.query('SELECT username, email FROM users WHERE username = $1', [username])
   }
