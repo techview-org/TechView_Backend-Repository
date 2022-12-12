@@ -6,7 +6,7 @@ class Comments {
   }
 
   static grabCommentsFromDB (postId) {
-    return pool.query('SELECT * FROM comments WHERE post_id = $1', [postId])
+    return pool.query('SELECT users.username, comments.* FROM users, comments WHERE users.id = comments.user_id AND comments.post_id = $1', [postId])
   }
 
   static createCommentToDB (newCommentId, userId, postId, comment) {
