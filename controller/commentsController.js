@@ -2,9 +2,10 @@ const Comments = require('../model/commentsModel.js')
 const Posts = require('../model/postModel')
 
 const getAllCommentsForPost = async (request, response) => {
-  const username = request.body.username
-  const postTitle = request.body.postTitle
-  const postId = await (await Posts.grabPostInfoFromDB(username, postTitle)).rows[0].post_id
+  // const username = request.body.username
+  // const postTitle = request.body.postTitle
+  // const postId = await (await Posts.grabPostInfoFromDB(username, postTitle)).rows[0].post_id
+  const postId = request.params.postId
 
   const data = await Comments.grabCommentsFromDB(postId)
   return response.send(data.rows)
