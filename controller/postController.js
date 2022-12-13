@@ -27,13 +27,12 @@ const getFilteredPosts = async (request, response) => {
 }
 
 const updateLikes = async (request, response) => {
-  const postInfo = request.body
-  const username = postInfo.username
-  const postTitle = postInfo.postTitle
-  const isLiked = postInfo.isLiked
+  const username = request.body.username
+  const postTitle = request.body.postTitle
+  const isLiked = request.body.isLiked
 
-  const data = await Post.grabPostInfoFromDB(username, postTitle)
-  const postId = data.rows[0].post_id
+  const postInfo = await Post.grabPostInfoFromDB(username, postTitle)
+  const postId = postInfo.rows[0].post_id
 
   let postWithUpdatedLikes = null
   if (isLiked) {
