@@ -9,8 +9,8 @@ class Comments {
     return pool.query('SELECT users.username, comments.* FROM users, comments WHERE users.id = comments.user_id AND comments.post_id = $1', [postId])
   }
 
-  static createCommentToDB (newCommentId, userId, postId, comment) {
-    return pool.query('INSERT INTO comments (comment_id, user_id, post_id, likes, comment_description) VALUES ($1, $2, $3, $4, $5) RETURNING *', [newCommentId, userId, postId, 0, comment])
+  static createCommentToDB ( userId, postId, comment) {
+    return pool.query('INSERT INTO comments (user_id, post_id, likes, comment_description) VALUES ($1, $2, $3, $4) RETURNING *', [ userId, postId, 0, comment])
   }
 }
 
