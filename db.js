@@ -2,9 +2,9 @@ const { Pool } = require('pg')
 
 const pool = new Pool({
 
-    database: 'techView',
-    user: 'crislp',
-    password: 'kyloren1234'
+    database: 'techview',
+    user: 'aaronminaya0',
+    password: 'Pwmf22gu.'
 })
 
 module.exports = pool

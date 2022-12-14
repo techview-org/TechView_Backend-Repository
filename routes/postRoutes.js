@@ -6,7 +6,11 @@ postRouter.get('/post', postController.getPost)
 
 postRouter.get('/post/:filter', postController.getFilteredPosts)
 
-postRouter.get('post/search', postController.getSearchPost)
+postRouter.get('post/:search', postController.getSearchPost)
+
+postRouter.get('/mostComments', postController.grabPostOrderByComment)
+
+postRouter.get('/mostLikes', postController.grabPostOrderByLikes)
 
 //takes request body with properties username, post_title, post_description, and post_type
 postRouter.post('/addPost', postController.addPost)

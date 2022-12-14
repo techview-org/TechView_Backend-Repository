@@ -32,6 +32,14 @@ class Post {
   static grabPostFromDBBySearch(search) {
     return pool.query("SELECT * FROM post WHERE post_title ILIKE '%1$%'", [search])
   }
+
+  static grabPostFromDBOrderByComment() {
+    return pool.query("SELECT * FROM post ORDER BY post.'numberComments' DESC LIMIT 3")
+  }
+
+  static grabPostFromDBOrderByLike() {
+    return pool.query("SELECT * FROM post ORDER BY post.'likes' DESC LIMIT 3")
+  }
 }
 
 module.exports = Post

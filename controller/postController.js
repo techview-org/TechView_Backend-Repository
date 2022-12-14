@@ -45,7 +45,18 @@ const updateLikes = async (request, response) => {
 }
 
 const getSearchPost = async (request, response) => {
-  const data = await Post.grabPostFromDBBySearch()
+  const search = request.params.search
+  const data = await Post.grabPostFromDBBySearch(search)
+  response.send(data.rows)
+}
+
+const grabPostOrderByComment = async (request, response) => {
+  const data = await Post.grabPostFromDBOrderByComment()
+  response.send(data.rows)
+}
+
+const grabPostOrderByLikes = async (request, response) => {
+  const data = await Post.grabPostFromDBOrderByComment()
   response.send(data.rows)
 }
 
@@ -54,5 +65,7 @@ module.exports = {
   getFilteredPosts,
   addPost,
   updateLikes,
-  getSearchPost
+  getSearchPost,
+  grabPostOrderByComment,
+  grabPostOrderByLikes
 }
