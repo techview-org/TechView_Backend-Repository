@@ -34,11 +34,11 @@ class Post {
   }
 
   static grabPostFromDBOrderByComment() {
-    return pool.query("SELECT * FROM post ORDER BY post.'numberComments' DESC LIMIT 3")
+    return pool.query('SELECT * FROM post')
   }
 
   static grabPostFromDBOrderByLike() {
-    return pool.query("SELECT * FROM post ORDER BY post.'likes' DESC LIMIT 3")
+    return pool.query('SELECT * FROM post')
   }
 }
 
