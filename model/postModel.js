@@ -30,7 +30,15 @@ class Post {
   }
 
   static grabPostFromDBBySearch(search) {
-    return pool.query("SELECT * FROM post WHERE post_title ILIKE '%1$%'", [search])
+    return pool.query(`SELECT * FROM post WHERE post_title ILIKE '%'||$1||'%'`, [search])
+  }
+
+  static grabPostFromDBOrderByComment() {
+    return pool.query('SELECT * FROM post')
+  }
+
+  static grabPostFromDBOrderByLike() {
+    return pool.query('SELECT * FROM post')
   }
 }
 
