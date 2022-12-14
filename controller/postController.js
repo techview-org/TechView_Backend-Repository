@@ -44,9 +44,15 @@ const updateLikes = async (request, response) => {
   response.send(postWithUpdatedLikes.rows[0])
 }
 
+const getSearchPost = async (request, response) => {
+  const data = await Post.grabPostFromDBBySearch()
+  response.send(data.rows)
+}
+
 module.exports = {
   getPost,
   getFilteredPosts,
   addPost,
-  updateLikes
+  updateLikes,
+  getSearchPost
 }

@@ -28,6 +28,10 @@ class Post {
   static subtractLikesForGivenPostInDB (postId) {
     return pool.query('UPDATE post SET likes = likes - 1 WHERE post_id = $1 RETURNING *', [postId])
   }
+
+  static grabPostFromDBBySearch(search) {
+    return pool.query("SELECT * FROM post WHERE post_title ILIKE '%1$%'", [search])
+  }
 }
 
 module.exports = Post
