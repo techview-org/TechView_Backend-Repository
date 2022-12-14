@@ -4,9 +4,9 @@ const postController = require('../controller/postController.js')
 
 postRouter.get('/post', postController.getPost)
 
-postRouter.get('/post/:filter', postController.getFilteredPosts)
+postRouter.get('/post/filter/:filter', postController.getFilteredPosts)
 
-postRouter.get('post/:search', postController.getSearchPost)
+postRouter.get('/post/search/:search', postController.getSearchPost)
 
 postRouter.get('/mostComments', postController.grabPostOrderByComment)
 
