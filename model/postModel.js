@@ -2,7 +2,7 @@ const pool = require('../db.js')
 
 class Post {
   static grabPostFromDB () {
-    return pool.query('SELECT users.username, post.* FROM users, post WHERE post.user_id = users.id')
+    return pool.query('SELECT users.username, post.* FROM users, post WHERE post.user_id = users.id ORDER BY post.post_id DESC')
   }
 
   static grabFilteredPostsFromDB (filter) {
