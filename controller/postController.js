@@ -8,14 +8,21 @@ const getPost = async (request, response) => {
 }
 
 const addPost = async (request, response) => {
-  const postInfo = request.body
-  const userId = await (await Users.grabUserIdGivenUsernamFromDB(postInfo.username)).rows[0].id
-  const latestPostId = await Post.grabLatestPostIdFromDB()
-  const newPostId = await latestPostId.rows[0].max + 1
-  const post = await Post.addPostToDB(newPostId, userId, postInfo.post_title, postInfo.post_description, postInfo.post_type)
+  try{
+    const postInfo = request.body
+    const userId = await (await Users.grabUserIdGivenUsernamFromDB(postInfo.username)).rows[0].id
+    const latestPostId = await Post.grabLatestPostIdFromDB()
+    const newPostId = await latestPostId.rows[0].max + 1
+    const post = await Post.addPostToDB(newPostId, userId, postInfo.post_title, postInfo.post_description, postInfo.post_type)
+    console.log(post)
+    response.status(200).json(post)
+  }
+  catch(err){
+    response.status(500).send(err)
+  }
 
-  response.send(post)
-}
+  }
+ 
 
 const getFilteredPosts = async (request, response) => {
   const filterValue = request.params.filter
