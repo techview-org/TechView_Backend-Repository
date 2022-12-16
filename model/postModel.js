@@ -2,7 +2,7 @@ const pool = require('../db.js')
 
 class Post {
   static grabPostFromDB () {
-    return pool.query('SELECT users.username, post.* FROM users, post WHERE post.user_id = users.id')
+    return pool.query('SELECT users.username, post.* FROM users, post WHERE post.user_id = users.id ORDER BY post.post_id DESC')
   }
 
   static grabFilteredPostsFromDB (filter) {
@@ -27,6 +27,18 @@ class Post {
 
   static subtractLikesForGivenPostInDB (postId) {
     return pool.query('UPDATE post SET likes = likes - 1 WHERE post_id = $1 RETURNING *', [postId])
+  }
+
+  static grabPostFromDBBySearch(search) {
+    return pool.query(`SELECT * FROM post WHERE post_title ILIKE '%'||$1||'%'`, [search])
+  }
+
+  static grabPostFromDBOrderByComment() {
+    return pool.query('SELECT * FROM post')
+  }
+
+  static grabPostFromDBOrderByLike() {
+    return pool.query('SELECT * FROM post')
   }
 }
 

@@ -8,11 +8,13 @@ const getAllUsers = async (request, response) => {
 
 const loginAuthentication = async (request, response) => {
   const data = await Users.grabUsersDataByEmailFromDB(request.params.email)
+  console.log(data.rows[0])
   if (data.rows[0]) {
     const password = await Users.grabPasswordByEmailFromDB(request.params.email)
 
     // bcrypt.compare is a promise. You must await.
     const passCheck = await bcrypt.compare(request.params.password, password.rows[0].password)
+    console.log(passCheck)
 
     if (passCheck) {
       response.send({ alert: 'loged in', data: data.rows[0] })
@@ -31,7 +33,8 @@ const addUserInfo = async (request, response) => {
   const salt = await bcrypt.genSalt(saltRounds)
   const hashedPassword = await bcrypt.hash(userInfo.password, salt)
   console.log(hashedPassword)
-  const post = await Users.createAccountToDB(userInfo.username, userInfo.email, hashedPassword, userInfo.badged_id)
+  const newUserId = await (await Users.grabLatestUserIdFromDB()).rows[0].max + 1
+  const post = await Users.createAccountToDB(newUserId, userInfo.username, userInfo.email, hashedPassword, userInfo.badged_id)
   return response.send(post.rows)
 }
 

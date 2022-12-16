@@ -19,7 +19,6 @@ const addPost = async (request, response) => {
 
 const getFilteredPosts = async (request, response) => {
   const filterValue = request.params.filter
-  console.log(filterValue)
   const data = await Post.grabFilteredPostsFromDB(filterValue)
   const filteredPosts = await data.rows
 
@@ -44,9 +43,29 @@ const updateLikes = async (request, response) => {
   response.send(postWithUpdatedLikes.rows[0])
 }
 
+const getSearchPost = async (request, response) => {
+  console.log(request.params)
+  const search = request.params.search
+  const data = await Post.grabPostFromDBBySearch(search)
+  response.send(data.rows)
+}
+
+const grabPostOrderByComment = async (request, response) => {
+  const data = await Post.grabPostFromDBOrderByComment()
+  response.send(data.rows)
+}
+
+const grabPostOrderByLikes = async (request, response) => {
+  const data = await Post.grabPostFromDBOrderByComment()
+  response.send(data.rows)
+}
+
 module.exports = {
   getPost,
   getFilteredPosts,
   addPost,
-  updateLikes
+  updateLikes,
+  getSearchPost,
+  grabPostOrderByComment,
+  grabPostOrderByLikes
 }
