@@ -8,9 +8,9 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
-      database: 'techView',
-      user: 'emmanuel',
-      password: '2413'
+      database: 'TECHVIEW',
+      user: 'marcy',
+      password: 'marcy'
     }
   },
 
