@@ -15,9 +15,9 @@ const createComment = async (request, response) => {
   const commentInfo = request.body
   console.log(commentInfo)
   const maxCommentId = await Comments.grabLatestCommentIdFromDB()
-  // const newCommentId = await maxCommentId.rows[0].max + 1
+  const newCommentId = await maxCommentId.rows[0].max + 1
 
-  const post = await Comments.createCommentToDB( commentInfo.user_id, commentInfo.post_id, commentInfo.comment)
+  const post = await Comments.createCommentToDB( newCommentId, commentInfo.user_id, commentInfo.post_id, commentInfo.comment)
   return response.send(post.rows[0])
 }
 

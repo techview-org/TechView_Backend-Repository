@@ -11,7 +11,7 @@ class Users {
 
   static grabUsersDataByEmailFromDB (userEmail) {
     console.log(userEmail)
-    return pool.query('SELECT * FROM users WHERE user_id = $1', [userEmail])
+    return pool.query('SELECT * FROM users WHERE email = $1', [userEmail])
   }
 
   static grabUserIdGivenUsernamFromDB (username) {

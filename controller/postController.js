@@ -9,6 +9,7 @@ const getPost = async (request, response) => {
 
 const addPost = async (request, response) => {
   const postInfo = request.body
+  console.log(postInfo)
   const userId = await (await Users.grabUserIdGivenUsernamFromDB(postInfo.username)).rows[0].id
   const latestPostId = await Post.grabLatestPostIdFromDB()
   const newPostId = await latestPostId.rows[0].max + 1
